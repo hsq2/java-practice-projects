@@ -1,0 +1,5 @@
+apple:2.10:true
+banana:1.50:true
+cucumber:1.20:true
+strawberry:4.95:true
+chocolate:2.00:false
