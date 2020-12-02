@@ -1,4 +1,4 @@
-public class Finder {
+public class WitcherFinder {
 
     private final static String target = "!GERALT!".toLowerCase();
     private final static int targetSum = 10;
