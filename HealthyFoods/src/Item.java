@@ -12,15 +12,6 @@ public class Item {
         this.healthy = healthy;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "name='" + name + '\'' +
-                ", value=" + value +
-                ", healthy=" + healthy +
-                '}';
-    }
-
     public String getName() {
         return name;
     }
@@ -36,4 +27,15 @@ public class Item {
     public boolean isUnhealthy() {
         return !healthy;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                ", healthy=" + healthy +
+                '}';
+    }
+
+
 }
