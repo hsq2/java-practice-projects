@@ -1,8 +1,11 @@
-public class Symbol {
+public enum Symbol {
+    COMPUTER("O"),
+    HUMAN("X"),
+    PLACEHOLDER("-");
 
-    String symbol;
+    private final String symbol;
 
-    public Symbol(String symbol) {
+    Symbol(String symbol) {
         this.symbol = symbol;
     }
 
@@ -10,12 +13,30 @@ public class Symbol {
         return symbol;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
-    @Override
-    public String toString() {
-        return symbol;
-    }
+    //    @Override
+//    public String toString() {
+//        return symbol;
+//    }
 }
+
+//public class Symbol {
+//
+//    String symbol;
+//
+//    public Symbol(String symbol) {
+//        this.symbol = symbol;
+//    }
+//
+//    public String getSymbol() {
+//        return symbol;
+//    }
+//
+//    public void setSymbol(String symbol) {
+//        this.symbol = symbol;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return symbol;
+//    }
+//}
