@@ -1,3 +1,7 @@
+import components.Ball;
+import components.Player;
+import frame.MainFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,20 +12,13 @@ import javax.swing.Timer;
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
-    private boolean gameRunning = false;
-    private int score = 0;
-
-    private int totalBricks = 21;
+    Player player = new Player();
+    Ball ball = new Ball();
+    Game game = new Game(player, ball);
 
     private Timer timer;
     private int delay = 8;
 
-    private int playerX = 310;
-
-    private int ballposX = 120;
-    private int ballposY = 350;
-    private int ballXdir = -1;
-    private int ballYdir = -2;
 
     public Gameplay() {
         addKeyListener(this);
@@ -35,7 +32,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void paint(Graphics graphics) {
         //background
         graphics.setColor(new Color(0, 0, 153));
-        graphics.fillRect(1, 1, 692, 592);
+        graphics.fillRect(1, 1, MainFrame.WIDTH.getSize() - 8, MainFrame.HEIGHT.getSize() - 8);
 
         //borders
         graphics.setColor(new Color(0, 128, 255));
@@ -44,12 +41,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         graphics.fillRect(691, 0, 3, 592);
 
         //paddle
-        graphics.setColor(new Color(255, 255, 255));
-        graphics.fillRect(playerX, 550, 100, 8);
+        graphics.setColor(player.getPaddleColor());
+        graphics.fillRect(player.getPlayerPosX(), player.getPlayerPosY(), player.getPaddleWidth(), player.getPaddleHeight());
 
         //Ball
-        graphics.setColor(new Color(102, 255, 255));
-        graphics.fillRect(ballposX, ballposY, 20, 20);
+        graphics.setColor(ball.getColor());
+        graphics.fillRect(ball.getBallposX(), ball.getBallposY(), ball.getBallWidth(), ball.getBallHeight());
 
 
     }
@@ -68,22 +65,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        gameRunning = true;
+        game.setGameRunning(true);
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            playerX = playerX >= 600 ? 600 : moveRight();
+            player.setPlayerPosX(player.getPlayerPosX() >= MainFrame.BORDER_RIGHT.getSize() ? MainFrame.BORDER_RIGHT.getSize() : player.moveRight());
         }
 
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            playerX = playerX < 10 ? 10 : moveLeft();
+            player.setPlayerPosX(player.getPlayerPosX() >= MainFrame.BORDER_LEFT.getSize() ? MainFrame.BORDER_LEFT.getSize() : player.moveLeft());
         }
-    }
-
-    public int moveRight() {
-        return playerX += 20;
-    }
-
-    public int moveLeft() {
-        return playerX -= 20;
     }
 
 
