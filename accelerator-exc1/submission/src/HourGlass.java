@@ -10,11 +10,9 @@ public class HourGlass {
         int num = (2 * n) - 1;
         for (int i = 0; i < num; i++) {
             if (isUpperHalf(i, num)) {
-                printPattern(getWhiteSpace(), i);
-                printPattern(getSymbol(), num - (i * 2));
+                pattern(i, num - (i * 2));
             } else {
-                printPattern(getWhiteSpace(), (num - i) - 1);
-                printPattern(getSymbol(), ((i * 2) - num + 2));
+                pattern((num - i) - 1, (i * 2) - num + 2);
             }
             System.out.println();
         }
@@ -28,6 +26,11 @@ public class HourGlass {
         for (int i = 0; i < condition; i++) {
             printChar(c);
         }
+    }
+
+    private void pattern(int condition1, int condition2) {
+        printPattern(getWhiteSpace(), condition1);
+        printPattern(getSymbol(), condition2);
     }
 
     private void printChar(char ch) {
