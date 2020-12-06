@@ -12,20 +12,30 @@ import javax.swing.Timer;
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
-    Player player = new Player();
-    Ball ball = new Ball();
-    Game game = new Game(player, ball);
+//    Player player = new Player();
+//    Ball ball = new Ball();
+//    Game game = new Game(player, ball);
 
     private Timer timer;
     private int delay = 8;
+    private final Player player;
+    private final Ball ball;
+    private final Game game;
+
 
 
     public Gameplay() {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+
         timer = new Timer(delay, this);
         timer.start();
+
+        player = new Player();
+        ball = new Ball();
+
+        game = new Game(player, ball);
 
     }
 
