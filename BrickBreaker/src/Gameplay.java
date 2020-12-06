@@ -67,11 +67,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         game.setGameRunning(true);
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            player.setPlayerPosX(player.getPlayerPosX() >= MainFrame.BORDER_RIGHT.getSize() ? MainFrame.BORDER_RIGHT.getSize() : player.moveRight());
+//            player.setPlayerPosX(player.getPlayerPosX() >= MainFrame.BORDER_RIGHT.getSize() ? MainFrame.BORDER_RIGHT.getSize() : player.moveRight());
+            player.setPlayerPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), player.moveRight()));
         }
 
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            player.setPlayerPosX(player.getPlayerPosX() >= MainFrame.BORDER_LEFT.getSize() ? MainFrame.BORDER_LEFT.getSize() : player.moveLeft());
+            player.setPlayerPosX(Math.max(MainFrame.BORDER_LEFT.getSize(), player.moveLeft()));
         }
     }
 
