@@ -3,9 +3,9 @@ import components.Player;
 
 public class Game {
 
-    public boolean gameRunning = false;
-    public int score = 0;
-    public final int totalBricks = 21;
+    private boolean gameRunning = false;
+    private int score = 0;
+    private final int totalBricks = 21;
     Player player;
     Ball ball;
 
@@ -35,8 +35,5 @@ public class Game {
         return totalBricks;
     }
 
-    //isRunning = false
-    //int score
-    //total bricks
 
 }
