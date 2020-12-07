@@ -1,12 +1,10 @@
 public class Main {
 
-    private static final char SYMBOL = '*';
-
     public static void main(String[] args) {
         WitcherFinder wf = new WitcherFinder();
         runWitcherFinder(wf);
 
-        HourGlass hg = new HourGlass(Symbol.STAR.getSymbol());
+        HourGlass hg = new HourGlass(Symbol.STAR);
         runHourGlass(hg);
     }
 
