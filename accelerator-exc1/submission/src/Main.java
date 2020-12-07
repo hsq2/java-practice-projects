@@ -6,7 +6,7 @@ public class Main {
         WitcherFinder wf = new WitcherFinder();
         runWitcherFinder(wf);
 
-        HourGlass hg = new HourGlass(SYMBOL);
+        HourGlass hg = new HourGlass(Symbol.STAR.getSymbol());
         runHourGlass(hg);
     }
 
