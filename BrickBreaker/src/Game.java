@@ -1,16 +1,16 @@
 import components.Ball;
-import components.Player;
+import components.Paddle;
 
 public class Game {
 
     private boolean gameRunning = false;
     private int score = 0;
     private final int totalBricks = 21;
-    Player player;
+    Paddle paddle;
     Ball ball;
 
-    public Game(Player player, Ball ball) {
-        this.player = player;
+    public Game(Paddle paddle, Ball ball) {
+        this.paddle = paddle;
     }
 
     public boolean isGameRunning() {
