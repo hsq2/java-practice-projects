@@ -1,0 +1,12 @@
+1. Your task is to design a strategy game called Stratego in Java. Use loops, branching, overloading, overriding and interfaces as per your logic. You need to use a 2D array that can display 10X10 table on the console (you can hard code and print the lines to represent columns and rows). You need to consider every possible win-lose situation to put appropriate checks. The game will be Human VS Computer and Computer should try to win ASAP. The game flow will be as follows:
+
+1. Human always takes the first turn and set-up the board as per his/her strategy, you can also save your strategies into a text file and can load your pieces from there to save time in setting the board every single time
+2. Computer should set its board as per its strategy (try to come up with more than one way for computer to set the board and do it randomly)
+3. Computer's pieces should be shown on GUI as X as you do not suppose to know the position of computer's pieces until a piece attacks you OR you attack a specific piece.
+4. Human should select the piece index to move/attack and then select whether he wants to attack or move, and then should enter desired cell co-ordinates i.e., 00 M 01 will move piece from x,y (0,0) to x,y (0,1) and 00 A 01 will attack on a piece at (0,1) by your piece at (0,0). Of-course you need to have all the checks regarding valid moves of a piece and attack/move scenarios e.g., bombs and flags should not move.
+5. The game can be won, loss and score of Human VS Computer should be shown after every game until you terminate the running program. Think carefully about the selection of data structures and your design.
+
+Bonus optional Part:
+Try to save the current running game and score in a text file. On restarting the program, you can either start a new game or load the previous incomplete game from the file. A new save will overwrite the previous one. While playing the game use -1,-1 input to save and quit the game the game.
+
+P.S: We are not looking for a perfect AI for this iteration. First, focus on your Model and come up with a good design, AI can be random/non-perfect for now.
