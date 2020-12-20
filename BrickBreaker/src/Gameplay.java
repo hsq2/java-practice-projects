@@ -12,10 +12,6 @@ import javax.swing.Timer;
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
-//    Player player = new Player();
-//    Ball ball = new Ball();
-//    Game game = new Game(player, ball);
-
     private Timer timer;
     private int delay = 8;
     private final Player player;
@@ -58,11 +54,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         graphics.setColor(ball.getColor());
         graphics.fillRect(ball.getBallposX(), ball.getBallposY(), ball.getBallWidth(), ball.getBallHeight());
 
+        graphics.dispose();
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        timer.start();
+        repaint();
     }
 
     @Override
@@ -77,7 +76,6 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         game.setGameRunning(true);
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-//            player.setPlayerPosX(player.getPlayerPosX() >= MainFrame.BORDER_RIGHT.getSize() ? MainFrame.BORDER_RIGHT.getSize() : player.moveRight());
             player.setPlayerPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), player.moveRight()));
         }
 
