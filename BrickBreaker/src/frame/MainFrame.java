@@ -5,7 +5,7 @@ public enum MainFrame {
     WIDTH(600),
     HEIGHT(700),
     BORDER_LEFT(10),
-    BORDER_RIGHT(MainFrame.WIDTH.getSize());
+    BORDER_RIGHT(590);
 
     private final int size;
 

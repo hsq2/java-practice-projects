@@ -54,11 +54,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         graphics.setColor(ball.getColor());
         graphics.fillRect(ball.getPosition().getPosX(), ball.getPosition().getPosY(), ball.getSize().getWidth(), ball.getSize().getHeight());
 
+        graphics.dispose();
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        timer.start();
+        repaint();
     }
 
     @Override
@@ -73,9 +76,13 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         game.setGameRunning(true);
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+<<<<<<< HEAD
 //            paddle.setPlayerPosX(paddle.getPlayerPosX() >= MainFrame.BORDER_RIGHT.getSize() ? MainFrame.BORDER_RIGHT.getSize() : paddle.moveRight());
 //            paddle.setPlayerPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), paddle.moveRight()));
             paddle.getPosition().setPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), paddle.moveRight()));
+=======
+            player.setPlayerPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), player.moveRight()));
+>>>>>>> e42feaef82f39577a4384fd5535f5a2350592650
         }
 
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {

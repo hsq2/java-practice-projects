@@ -1,9 +1,7 @@
 public class HourGlass {
 
-    private final char symbol;
 
-    public HourGlass(char symbol) {
-        this.symbol = symbol;
+    public HourGlass(Symbol symbol) {
     }
 
     public void createHourGlass(int n) {
@@ -22,26 +20,19 @@ public class HourGlass {
         return i < (num + 1) / 2;
     }
 
-    private void printPattern(char c, int condition) {
+    private void pattern(int whitespaceCondition, int starCondition) {
+        printPattern(Symbol.WHITE_SPACE, whitespaceCondition);
+        printPattern(Symbol.STAR, starCondition);
+    }
+
+    private void printPattern(Symbol symbol, int condition) {
         for (int i = 0; i < condition; i++) {
-            printChar(c);
+            printChar(symbol);
         }
     }
 
-    private void pattern(int condition1, int condition2) {
-        printPattern(getWhiteSpace(), condition1);
-        printPattern(getSymbol(), condition2);
+    private void printChar(Symbol symbol) {
+        System.out.print(symbol.getSymbol());
     }
 
-    private void printChar(char ch) {
-        System.out.print(ch);
-    }
-
-    private char getSymbol() {
-        return this.symbol;
-    }
-
-    private char getWhiteSpace() {
-        return ' ';
-    }
 }
