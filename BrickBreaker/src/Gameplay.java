@@ -1,5 +1,5 @@
 import components.Ball;
-import components.Player;
+import components.Paddle;
 import frame.MainFrame;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     private Timer timer;
     private int delay = 8;
-    private final Player player;
+    private final Paddle paddle;
     private final Ball ball;
     private final Game game;
 
@@ -28,10 +28,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         timer = new Timer(delay, this);
         timer.start();
 
-        player = new Player();
+        paddle = new Paddle();
         ball = new Ball();
 
-        game = new Game(player, ball);
+        game = new Game(paddle, ball);
 
     }
 
@@ -47,12 +47,12 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         graphics.fillRect(691, 0, 3, 592);
 
         //paddle
-        graphics.setColor(player.getPaddleColor());
-        graphics.fillRect(player.getPlayerPosX(), player.getPlayerPosY(), player.getPaddleWidth(), player.getPaddleHeight());
+        graphics.setColor(paddle.getColor());
+        graphics.fillRect(paddle.getPosition().getPosX(), paddle.getPosition().getPosY(), paddle.getSize().getWidth(), paddle.getSize().getHeight());
 
         //Ball
         graphics.setColor(ball.getColor());
-        graphics.fillRect(ball.getBallposX(), ball.getBallposY(), ball.getBallWidth(), ball.getBallHeight());
+        graphics.fillRect(ball.getPosition().getPosX(), ball.getPosition().getPosY(), ball.getSize().getWidth(), ball.getSize().getHeight());
 
         graphics.dispose();
 
@@ -76,11 +76,17 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent e) {
         game.setGameRunning(true);
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+<<<<<<< HEAD
+//            paddle.setPlayerPosX(paddle.getPlayerPosX() >= MainFrame.BORDER_RIGHT.getSize() ? MainFrame.BORDER_RIGHT.getSize() : paddle.moveRight());
+//            paddle.setPlayerPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), paddle.moveRight()));
+            paddle.getPosition().setPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), paddle.moveRight()));
+=======
             player.setPlayerPosX(Math.min(MainFrame.BORDER_RIGHT.getSize(), player.moveRight()));
+>>>>>>> e42feaef82f39577a4384fd5535f5a2350592650
         }
 
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            player.setPlayerPosX(Math.max(MainFrame.BORDER_LEFT.getSize(), player.moveLeft()));
+            paddle.getPosition().setPosX(Math.min(MainFrame.BORDER_LEFT.getSize(), paddle.moveLeft()));
         }
     }
 
