@@ -1,0 +1,22 @@
+Copy the files in the specialOffers folder into a maven project (a new one or the one above).
+For each of the following special offer types, implement an appropriate SpecialOfferTrigger, SpecialOfferAction and SpecialOffer class, writing a test for each.
+
+A percentage discount
+A fixed discount
+
+Implement getTotalGBP() in Basket and write a test for it. Make sure Basket doesn't let the total go below zero.
+
+
+
+
+
+
+
+
+
+
+
+
+TODO:
+Clean up Runner
+Clean up MaxHeapTest.java
