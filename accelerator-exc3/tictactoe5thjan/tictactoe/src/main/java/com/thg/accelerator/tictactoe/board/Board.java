@@ -6,8 +6,11 @@ public class Board {
 
     private final int rows = 3;
     private final int columns = 3;
-    private BoardSymbol[][] board;
+    Symbol[][] board;
 
+    public Board(Symbol[][] board) {
+        this.board = board;
+    }
 
     //    private final char[][] board = {{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
 //    private final BoardSymbol[][] board = {{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
@@ -15,20 +18,20 @@ public class Board {
     public void initialiseBoard() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                board[i][j] = BoardSymbol.EMPTY;
+                board[i][j] = Symbol.EMPTY_CELL;
             }
         }
     }
 
     public void printBoard() {
-        initialiseBoard();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                System.out.println(board[i][j]);
+                System.out.print(board[i][j]);
                 if (j < 2) {
-                    System.out.println(BoardSymbol.TABLE_LINES);
+                    System.out.print(Symbol.TABLE_LINE);
                 }
             }
+            System.out.println();
         }
     }
 
@@ -46,7 +49,7 @@ public class Board {
 //        }
 //    }
 
-    public BoardSymbol[][] getBoard() {
+    public Symbol[][] getBoard() {
         return board;
     }
 }

@@ -1,33 +1,35 @@
 package com.thg.accelerator.tictactoe.gamehandler;
 
-import com.thg.accelerator.tictactoe.Counter;
 import com.thg.accelerator.tictactoe.Position;
 import com.thg.accelerator.tictactoe.board.Board;
+import com.thg.accelerator.tictactoe.board.Symbol;
 
 public class GameHandler {
 //    TurnHandler turnHandler = new TurnHandler(true);
 //    Counter counter = new Counter();
-    GameChecker gameChecker = new GameChecker();
-    Board board = new Board();
+    private final GameChecker gameChecker;
+    private final Board board;
+    private final TurnHandler turnHandler;
 
-    public GameHandler(GameChecker gameChecker, Board board) {
+    public GameHandler(GameChecker gameChecker, Board board, TurnHandler turnHandler) { //boardsymbol?
         this.gameChecker = gameChecker;
         this.board = board;
+        this.turnHandler = turnHandler;
     }
 
-    public boolean isValidMove(Position move, char sym) {
+    public boolean isValidMove(Position move, Symbol sym) {
         return gameChecker.isValid(board.getBoard(), move, sym);
     }
 
-    public void placeMove(Position move, char sym, TurnHandler turnHandler) {
+    public void placeMove(Position move, Symbol sym) {
             if (!isValidMove(move, sym)) {
-                if (turnHandler.isHumanTurn()) {
+                if (turnHandler.currentPlayer()) {
                     System.out.println("invalid move");
                 }
             } else {
                 board.getBoard()[move.getRow()][move.getColumn()] = sym;
                 board.printBoard();
-                turnHandler.setHumanTurn(turnHandler.isHumanTurn());
+                turnHandler.switchCurrentPlayer(turnHandler.currentPlayer());
             }
         }
 //        while (turnHandler.isHumanTurn()) {

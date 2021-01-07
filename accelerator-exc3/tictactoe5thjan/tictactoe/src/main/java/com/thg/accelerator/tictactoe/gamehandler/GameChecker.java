@@ -1,14 +1,14 @@
 package com.thg.accelerator.tictactoe.gamehandler;
 
 import com.thg.accelerator.tictactoe.Position;
+import com.thg.accelerator.tictactoe.board.Symbol;
 
 public class GameChecker {
 
 
 
 
-
-    public boolean isValid(char[][] board, Position move, char sym) {
+    public boolean isValid(Symbol[][] board, Position move, Symbol sym) {
         return isEmpty(board, move) && inRange(move) && !winningMove(board, sym);
     }
 
@@ -16,42 +16,42 @@ public class GameChecker {
         return (move.getRow() >= 0 && move.getRow() < 3) && (move.getColumn() >= 0 && move.getColumn() < 3);
     }
 
-    public boolean isEmpty(char[][] board, Position move) {
-        return board[move.getRow()][move.getColumn()] == '_';
+    public boolean isEmpty(Symbol[][] board, Position move) {
+        return board[move.getRow()][move.getColumn()].equals(Symbol.EMPTY_CELL);
     }
 
-    public boolean winningMove(char[][] board, char sym) {
+    public boolean winningMove(Symbol[][] board, Symbol sym) {
         return winningRow(board, sym) && winningCol(board, sym) && winningDiag(board, sym);
     }
 
-    public boolean winningRow(char[][] board, char sym) {
+    public boolean winningRow(Symbol[][] board, Symbol sym) {
         for (int i = 0; i < board.length; i++) {
-            if (board[i][0] == sym && board[i][1] == sym && board[i][2] == sym) {
+            if (board[i][0].equals(sym) && board[i][1].equals(sym) && board[i][2].equals(sym)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean winningCol(char[][] board, char sym) {
+    public boolean winningCol(Symbol[][] board, Symbol sym) {
         for (int i = 0; i < board.length; i++) {
-            if (board[0][i] == sym && board[1][i] == sym && board[2][i] == sym) {
+            if (board[0][i].equals(sym) && board[1][i].equals(sym) && board[2][i].equals(sym)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean winningDiag(char[][] board, char sym) {
-        if (board[1][1] != sym) {
+    public boolean winningDiag(Symbol[][] board, Symbol sym) {
+        if (!board[1][1].equals(sym)) {
             return false;
         }
 
-        if (board[0][0] == sym && board[2][2] == sym) {
+        if (board[0][0].equals(sym) && board[2][2].equals(sym)) {
             return true;
         }
 
-        if (board[0][2] == sym && board[2][0] == sym) {
+        if (board[0][2].equals(sym) && board[2][0].equals(sym)) {
             return true;
         }
 

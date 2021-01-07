@@ -2,21 +2,17 @@ package com.thg.accelerator.tictactoe.gamehandler;
 
 public class TurnHandler {
 
-    private boolean isHumanTurn;
+    private boolean currentPlayer; // true = human - false = computer
 
-    public TurnHandler(boolean isHumanTurn) {
-        this.isHumanTurn = isHumanTurn;
+    public TurnHandler(boolean currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
-    public void setHumanTurn(boolean humanTurn) {
-        isHumanTurn = !humanTurn;
+    public void switchCurrentPlayer(boolean currentPlayer) {
+        this.currentPlayer = !currentPlayer;
     }
 
-    public boolean switchTurn() {
-        return !isHumanTurn;
-    }
-
-    public boolean isHumanTurn() {
-        return isHumanTurn;
+    public boolean currentPlayer() {
+        return currentPlayer;
     }
 }
