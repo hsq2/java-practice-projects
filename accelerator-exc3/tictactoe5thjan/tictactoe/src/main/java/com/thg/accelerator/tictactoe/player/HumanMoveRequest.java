@@ -1,19 +1,14 @@
 package com.thg.accelerator.tictactoe.player;
 
 import com.thg.accelerator.tictactoe.Position;
-import com.thg.accelerator.tictactoe.player.Human;
-import com.thg.accelerator.tictactoe.player.Player;
 
 import java.util.Scanner;
 
-public class HumanMoveRequest {
+public class HumanMoveRequest implements MoveRequest {
 
-    Player human = new Human();
-    Scanner scanner = new Scanner(System.in);
+    private final Player human = new Human();
+    private final Scanner scanner = new Scanner(System.in);
 
-    public Position requestMove() {
-        return human.makeMove(requestRow(), requestColumn());
-    }
 
     private int requestRow() {
         System.out.println("Enter row");
@@ -25,5 +20,8 @@ public class HumanMoveRequest {
         return scanner.nextInt();
     }
 
-
+    @Override
+    public Position requestMove() {
+        return human.makeMove(requestRow(), requestColumn());
+    }
 }

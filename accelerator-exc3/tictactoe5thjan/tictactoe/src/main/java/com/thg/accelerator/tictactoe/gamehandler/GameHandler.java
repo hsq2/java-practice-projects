@@ -11,18 +11,24 @@ public class GameHandler {
     private final Board board;
     private final TurnHandler turnHandler;
 
-    public GameHandler(GameChecker gameChecker, Board board, TurnHandler turnHandler) { //boardsymbol?
+    public GameHandler(GameChecker gameChecker, Board board, TurnHandler turnHandler) {
         this.gameChecker = gameChecker;
         this.board = board;
         this.turnHandler = turnHandler;
     }
 
-    public boolean isValidMove(Position move, Symbol sym) {
-        return gameChecker.isValid(move, sym);
+
+
+//    public boolean isValidMove(Position move, Symbol sym) {
+//        return gameChecker.isValid(move, sym);
+//    }
+
+    public void checkState() {
+
     }
 
     public void placeMove(Position move, Symbol sym) {
-            if (!isValidMove(move, sym)) {
+            if (!gameChecker.isValidMove(move, sym)) {
                 if (turnHandler.currentPlayer()) {
                     System.out.println("invalid move");
                 }

@@ -4,31 +4,24 @@ import com.thg.accelerator.tictactoe.gamehandler.GameChecker;
 
 public class Board {
 
-    private final int rows = 3;
-    private final int columns = 3;
-//    private Symbol[][] board;
-//
-//    public Board(Symbol[][] board) {
-//        this.board = board;
-//    }
+FundamentalBoard fundamentalBoard;
 
-    //    private final char[][] board = {{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
-   private final Symbol[][] board = {{Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL},
-            {Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL},
-            {Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL}};
+    public Board(FundamentalBoard fundamentalBoard) {
+        this.fundamentalBoard = fundamentalBoard;
+    }
 
 //    public void initialiseBoard() {
-//        for (int i = 0; i < rows; i++) {
-//            for (int j = 0; j < columns; j++) {
-//                board[i][j] = Symbol.EMPTY_CELL;
+//        for (int i = 0; i < fundamentalBoard.getRows(); i++) {
+//            for (int j = 0; j < fundamentalBoard.getColumns(); j++) {
+//                fundamentalBoard.getBoard()[i][j] = Symbol.EMPTY_CELL;
 //            }
 //        }
 //    }
 
     public void printBoard() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                System.out.print(board[i][j]);
+        for (int i = 0; i < fundamentalBoard.getRows(); i++) {
+            for (int j = 0; j < fundamentalBoard.getColumns(); j++) {
+                System.out.print(fundamentalBoard.getBoard()[i][j]);
                 if (j < 2) {
                     System.out.print(Symbol.TABLE_LINE);
                 }
@@ -37,7 +30,16 @@ public class Board {
         }
     }
 
-    public Symbol[][] getBoard() {
-        return board;
+    public int getRows() {
+        return fundamentalBoard.getRows();
     }
+
+    public int getColumns() {
+        return fundamentalBoard.getColumns();
+    }
+
+    public Symbol[][] getBoard() {
+        return fundamentalBoard.getBoard();
+    }
+
 }

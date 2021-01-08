@@ -1,16 +1,19 @@
 package com.thg.accelerator.tictactoe.gamehandler;
 
 import com.thg.accelerator.tictactoe.Position;
+import com.thg.accelerator.tictactoe.board.Board;
 import com.thg.accelerator.tictactoe.board.Symbol;
 
 public class GameChecker {
-    private final Symbol[][] board;
+//    private final Symbol[][] board;
+    private final Board board;
 
-    public GameChecker(Symbol[][] board) {
+    public GameChecker(Board board) {
         this.board = board;
     }
 
-    public boolean isValid(Position move, Symbol sym) {
+
+    public boolean isValidMove(Position move, Symbol sym) {
         return isEmptyCell(move) && inTableRange(move) && !winningMove(sym);
     }
 
@@ -19,16 +22,16 @@ public class GameChecker {
     }
 
     public boolean isEmptyCell(Position move) {
-        return board[move.getRow()][move.getColumn()].equals(Symbol.EMPTY_CELL);
+        return board.getBoard()[move.getRow()][move.getColumn()].equals(Symbol.EMPTY_CELL);
     }
 
     public boolean winningMove(Symbol sym) {
-        return winningRow(sym) && winningCol(sym) && winningDiag(sym);
+        return winningRow(sym) || winningCol(sym) || winningDiag(sym);
     }
 
     public boolean winningRow(Symbol sym) {
-        for (int i = 0; i < board.length; i++) {
-            if (board[i][0].equals(sym) && board[i][1].equals(sym) && board[i][2].equals(sym)) {
+        for (int i = 0; i < board.getRows(); i++) {
+            if (board.getBoard()[i][0].equals(sym) && board.getBoard()[i][1].equals(sym) && board.getBoard()[i][2].equals(sym)) {
                 return true;
             }
         }
@@ -36,8 +39,8 @@ public class GameChecker {
     }
 
     public boolean winningCol(Symbol sym) {
-        for (int i = 0; i < board.length; i++) {
-            if (board[0][i].equals(sym) && board[1][i].equals(sym) && board[2][i].equals(sym)) {
+        for (int i = 0; i < board.getColumns(); i++) {
+            if (board.getBoard()[0][i].equals(sym) && board.getBoard()[1][i].equals(sym) && board.getBoard()[2][i].equals(sym)) {
                 return true;
             }
         }
@@ -45,15 +48,11 @@ public class GameChecker {
     }
 
     public boolean winningDiag(Symbol sym) {
-        if (!board[1][1].equals(sym)) {
-            return false;
-        }
-
-        if (board[0][0].equals(sym) && board[2][2].equals(sym)) {
+        if (board.getBoard()[0][0].equals(sym) && board.getBoard()[1][1].equals(sym) && board.getBoard()[2][2].equals(sym)) {
             return true;
         }
 
-        if (board[0][2].equals(sym) && board[2][0].equals(sym)) {
+        if (board.getBoard()[2][0].equals(sym) && board.getBoard()[1][1].equals(sym) && board.getBoard()[0][2].equals(sym)) {
             return true;
         }
 

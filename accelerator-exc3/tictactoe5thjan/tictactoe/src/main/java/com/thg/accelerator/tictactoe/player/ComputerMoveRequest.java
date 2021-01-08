@@ -3,7 +3,7 @@ package com.thg.accelerator.tictactoe.player;
 import com.thg.accelerator.tictactoe.Position;
 import java.util.Random;
 
-public class ComputerMoveRequest {
+public class ComputerMoveRequest implements MoveRequest {
 
     private final Random random = new Random();
     private final Player computer = new Computer();
@@ -12,6 +12,7 @@ public class ComputerMoveRequest {
         return random.nextInt(3);
     }
 
+    @Override
     public Position requestMove() {
         int row = generateRandomMove();
         int col = generateRandomMove();
