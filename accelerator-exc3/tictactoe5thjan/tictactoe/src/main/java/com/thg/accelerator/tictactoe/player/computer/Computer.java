@@ -1,6 +1,7 @@
-package com.thg.accelerator.tictactoe.player;
+package com.thg.accelerator.tictactoe.player.computer;
 
 import com.thg.accelerator.tictactoe.Position;
+import com.thg.accelerator.tictactoe.player.Player;
 
 public class Computer implements Player {
     @Override

@@ -1,15 +1,15 @@
 package com.thg.accelerator.tictactoe.gamehandler;
 
 import com.thg.accelerator.tictactoe.Position;
-import com.thg.accelerator.tictactoe.board.Board;
+import com.thg.accelerator.tictactoe.board.BoardHelper;
 import com.thg.accelerator.tictactoe.board.Symbol;
 
 public class GameChecker {
 //    private final Symbol[][] board;
-    private final Board board;
+    private final BoardHelper boardHelper;
 
-    public GameChecker(Board board) {
-        this.board = board;
+    public GameChecker(BoardHelper boardHelper) {
+        this.boardHelper = boardHelper;
     }
 
 
@@ -22,7 +22,7 @@ public class GameChecker {
     }
 
     public boolean isEmptyCell(Position move) {
-        return board.getBoard()[move.getRow()][move.getColumn()].equals(Symbol.EMPTY_CELL);
+        return boardHelper.getBoard()[move.getRow()][move.getColumn()].equals(Symbol.EMPTY_CELL);
     }
 
     public boolean winningMove(Symbol sym) {
@@ -30,8 +30,8 @@ public class GameChecker {
     }
 
     public boolean winningRow(Symbol sym) {
-        for (int i = 0; i < board.getRows(); i++) {
-            if (board.getBoard()[i][0].equals(sym) && board.getBoard()[i][1].equals(sym) && board.getBoard()[i][2].equals(sym)) {
+        for (int i = 0; i < boardHelper.getRows(); i++) {
+            if (boardHelper.getBoard()[i][0].equals(sym) && boardHelper.getBoard()[i][1].equals(sym) && boardHelper.getBoard()[i][2].equals(sym)) {
                 return true;
             }
         }
@@ -39,8 +39,8 @@ public class GameChecker {
     }
 
     public boolean winningCol(Symbol sym) {
-        for (int i = 0; i < board.getColumns(); i++) {
-            if (board.getBoard()[0][i].equals(sym) && board.getBoard()[1][i].equals(sym) && board.getBoard()[2][i].equals(sym)) {
+        for (int i = 0; i < boardHelper.getColumns(); i++) {
+            if (boardHelper.getBoard()[0][i].equals(sym) && boardHelper.getBoard()[1][i].equals(sym) && boardHelper.getBoard()[2][i].equals(sym)) {
                 return true;
             }
         }
@@ -48,11 +48,11 @@ public class GameChecker {
     }
 
     public boolean winningDiag(Symbol sym) {
-        if (board.getBoard()[0][0].equals(sym) && board.getBoard()[1][1].equals(sym) && board.getBoard()[2][2].equals(sym)) {
+        if (boardHelper.getBoard()[0][0].equals(sym) && boardHelper.getBoard()[1][1].equals(sym) && boardHelper.getBoard()[2][2].equals(sym)) {
             return true;
         }
 
-        if (board.getBoard()[2][0].equals(sym) && board.getBoard()[1][1].equals(sym) && board.getBoard()[0][2].equals(sym)) {
+        if (boardHelper.getBoard()[2][0].equals(sym) && boardHelper.getBoard()[1][1].equals(sym) && boardHelper.getBoard()[0][2].equals(sym)) {
             return true;
         }
 

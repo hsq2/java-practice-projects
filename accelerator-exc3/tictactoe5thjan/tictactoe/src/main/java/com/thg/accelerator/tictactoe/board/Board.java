@@ -1,16 +1,15 @@
 package com.thg.accelerator.tictactoe.board;
 
-import com.thg.accelerator.tictactoe.gamehandler.GameChecker;
-
 public class Board {
 
-FundamentalBoard fundamentalBoard;
+    private static Board instance = null;
+    private final int rows = 3;
+    private final int columns = 3;
+    private final Symbol[][] board = {{Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL},
+            {Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL},
+            {Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL}};
 
-    public Board(FundamentalBoard fundamentalBoard) {
-        this.fundamentalBoard = fundamentalBoard;
-    }
-
-//    public void initialiseBoard() {
+    //    public void initialiseBoard() {
 //        for (int i = 0; i < fundamentalBoard.getRows(); i++) {
 //            for (int j = 0; j < fundamentalBoard.getColumns(); j++) {
 //                fundamentalBoard.getBoard()[i][j] = Symbol.EMPTY_CELL;
@@ -18,31 +17,24 @@ FundamentalBoard fundamentalBoard;
 //        }
 //    }
 
-    public void printBoard() {
-        System.out.println("===========================");
-        for (int i = 0; i < fundamentalBoard.getRows(); i++) {
-            for (int j = 0; j < fundamentalBoard.getColumns(); j++) {
-                System.out.print(fundamentalBoard.getBoard()[i][j]);
-                if (j < 2) {
-                    System.out.print(Symbol.TABLE_LINE);
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("===========================");
+    private Board() {}
 
+    public static Board getInstance() {
+        if (instance == null) {
+            instance = new Board();
+        }
+        return instance;
     }
 
     public int getRows() {
-        return fundamentalBoard.getRows();
+        return rows;
     }
 
     public int getColumns() {
-        return fundamentalBoard.getColumns();
+        return columns;
     }
 
     public Symbol[][] getBoard() {
-        return fundamentalBoard.getBoard();
+        return board;
     }
-
 }

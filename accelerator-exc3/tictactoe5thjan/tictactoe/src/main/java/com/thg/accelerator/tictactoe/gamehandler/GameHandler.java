@@ -1,25 +1,20 @@
 package com.thg.accelerator.tictactoe.gamehandler;
 
 import com.thg.accelerator.tictactoe.Position;
-import com.thg.accelerator.tictactoe.board.Board;
+import com.thg.accelerator.tictactoe.board.BoardHelper;
 import com.thg.accelerator.tictactoe.board.Symbol;
 
 public class GameHandler {
     private boolean isGameRunning = true;
     private final GameChecker gameChecker;
-    private final Board board;
+    private final BoardHelper boardHelper;
     private final TurnHandler turnHandler;
 
-    public GameHandler(GameChecker gameChecker, Board board, TurnHandler turnHandler) {
+    public GameHandler(GameChecker gameChecker, BoardHelper boardHelper, TurnHandler turnHandler) {
         this.gameChecker = gameChecker;
-        this.board = board;
+        this.boardHelper = boardHelper;
         this.turnHandler = turnHandler;
     }
-
-
-//    public boolean isValidMove(Position move, Symbol sym) {
-//        return gameChecker.isValid(move, sym);
-//    }
 
     public void checkState(Position move, Symbol sym) {
         if (gameChecker.winningMove(sym)) {
@@ -39,8 +34,8 @@ public class GameHandler {
                 System.out.println("invalid move");
             }
         } else {
-            board.getBoard()[move.getRow()][move.getColumn()] = sym;
-            board.printBoard();
+            boardHelper.getBoard()[move.getRow()][move.getColumn()] = sym;
+            boardHelper.printBoard();
             checkState(move, sym);
             turnHandler.switchCurrentPlayer(turnHandler.currentPlayer());
         }
@@ -48,5 +43,9 @@ public class GameHandler {
 
     public boolean isGameRunning() {
         return isGameRunning;
+    }
+
+    public boolean getCurrentPlayer() {
+        return turnHandler.currentPlayer();
     }
 }

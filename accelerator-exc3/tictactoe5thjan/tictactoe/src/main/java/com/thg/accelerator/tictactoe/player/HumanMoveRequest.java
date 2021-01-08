@@ -5,10 +5,12 @@ import com.thg.accelerator.tictactoe.Position;
 import java.util.Scanner;
 
 public class HumanMoveRequest implements MoveRequest {
-
-    private final Player human = new Human();
     private final Scanner scanner = new Scanner(System.in);
+    private final Player human;
 
+    public HumanMoveRequest(Player human) {
+        this.human = human;
+    }
 
     private int requestRow() {
         System.out.println("Enter row");
