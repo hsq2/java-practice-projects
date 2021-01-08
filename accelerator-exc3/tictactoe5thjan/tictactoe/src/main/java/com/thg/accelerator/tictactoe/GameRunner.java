@@ -9,8 +9,8 @@ import com.thg.accelerator.tictactoe.player.ComputerMoveRequest;
 import com.thg.accelerator.tictactoe.player.HumanMoveRequest;
 
 public class GameRunner {
-    static GameChecker gameChecker = new GameChecker();
-    static Board board = new Board(new Symbol[3][3]);
+    static Board board = new Board();
+    static GameChecker gameChecker = new GameChecker(board.getBoard());
     static HumanMoveRequest humanMoveRequest = new HumanMoveRequest();
     static ComputerMoveRequest computerMoveRequest = new ComputerMoveRequest();
 
@@ -20,7 +20,7 @@ public class GameRunner {
 
 
         System.out.println("Welcome to ticactoe");
-        board.initialiseBoard();
+//        board.initialiseBoard();
         board.printBoard();
 
         while (true) {

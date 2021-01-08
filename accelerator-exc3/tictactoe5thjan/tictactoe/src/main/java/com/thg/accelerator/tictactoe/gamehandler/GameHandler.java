@@ -18,7 +18,7 @@ public class GameHandler {
     }
 
     public boolean isValidMove(Position move, Symbol sym) {
-        return gameChecker.isValid(board.getBoard(), move, sym);
+        return gameChecker.isValid(move, sym);
     }
 
     public void placeMove(Position move, Symbol sym) {

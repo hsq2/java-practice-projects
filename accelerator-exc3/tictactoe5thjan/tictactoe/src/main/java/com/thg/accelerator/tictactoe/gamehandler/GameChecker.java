@@ -4,27 +4,29 @@ import com.thg.accelerator.tictactoe.Position;
 import com.thg.accelerator.tictactoe.board.Symbol;
 
 public class GameChecker {
+    private final Symbol[][] board;
 
-
-
-
-    public boolean isValid(Symbol[][] board, Position move, Symbol sym) {
-        return isEmpty(board, move) && inRange(move) && !winningMove(board, sym);
+    public GameChecker(Symbol[][] board) {
+        this.board = board;
     }
 
-    public boolean inRange(Position move) {
+    public boolean isValid(Position move, Symbol sym) {
+        return isEmptyCell(move) && inTableRange(move) && !winningMove(sym);
+    }
+
+    public boolean inTableRange(Position move) {
         return (move.getRow() >= 0 && move.getRow() < 3) && (move.getColumn() >= 0 && move.getColumn() < 3);
     }
 
-    public boolean isEmpty(Symbol[][] board, Position move) {
+    public boolean isEmptyCell(Position move) {
         return board[move.getRow()][move.getColumn()].equals(Symbol.EMPTY_CELL);
     }
 
-    public boolean winningMove(Symbol[][] board, Symbol sym) {
-        return winningRow(board, sym) && winningCol(board, sym) && winningDiag(board, sym);
+    public boolean winningMove(Symbol sym) {
+        return winningRow(sym) && winningCol(sym) && winningDiag(sym);
     }
 
-    public boolean winningRow(Symbol[][] board, Symbol sym) {
+    public boolean winningRow(Symbol sym) {
         for (int i = 0; i < board.length; i++) {
             if (board[i][0].equals(sym) && board[i][1].equals(sym) && board[i][2].equals(sym)) {
                 return true;
@@ -33,7 +35,7 @@ public class GameChecker {
         return false;
     }
 
-    public boolean winningCol(Symbol[][] board, Symbol sym) {
+    public boolean winningCol(Symbol sym) {
         for (int i = 0; i < board.length; i++) {
             if (board[0][i].equals(sym) && board[1][i].equals(sym) && board[2][i].equals(sym)) {
                 return true;
@@ -42,7 +44,7 @@ public class GameChecker {
         return false;
     }
 
-    public boolean winningDiag(Symbol[][] board, Symbol sym) {
+    public boolean winningDiag(Symbol sym) {
         if (!board[1][1].equals(sym)) {
             return false;
         }
