@@ -19,6 +19,7 @@ FundamentalBoard fundamentalBoard;
 //    }
 
     public void printBoard() {
+        System.out.println("===========================");
         for (int i = 0; i < fundamentalBoard.getRows(); i++) {
             for (int j = 0; j < fundamentalBoard.getColumns(); j++) {
                 System.out.print(fundamentalBoard.getBoard()[i][j]);
@@ -28,6 +29,8 @@ FundamentalBoard fundamentalBoard;
             }
             System.out.println();
         }
+        System.out.println("===========================");
+
     }
 
     public int getRows() {
