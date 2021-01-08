@@ -5,8 +5,7 @@ import com.thg.accelerator.tictactoe.board.Board;
 import com.thg.accelerator.tictactoe.board.Symbol;
 
 public class GameHandler {
-//    TurnHandler turnHandler = new TurnHandler(true);
-//    Counter counter = new Counter();
+    private boolean isGameRunning = true;
     private final GameChecker gameChecker;
     private final Board board;
     private final TurnHandler turnHandler;
@@ -18,36 +17,36 @@ public class GameHandler {
     }
 
 
-
 //    public boolean isValidMove(Position move, Symbol sym) {
 //        return gameChecker.isValid(move, sym);
 //    }
 
-    public void checkState() {
-
+    public void checkState(Position move, Symbol sym) {
+        if (gameChecker.winningMove(sym)) {
+            System.out.println(sym + " wins");
+            isGameRunning = false;
+        } else if (gameChecker.isEmptyCell(move) && gameChecker.winningMove(sym)) {
+            System.out.println("Game is a draw");
+            isGameRunning = false;
+        } else {
+            isGameRunning = true;
+        }
     }
 
     public void placeMove(Position move, Symbol sym) {
-            if (!gameChecker.isValidMove(move, sym)) {
-                if (turnHandler.currentPlayer()) {
-                    System.out.println("invalid move");
-                }
-            } else {
-                board.getBoard()[move.getRow()][move.getColumn()] = sym;
-                board.printBoard();
-                turnHandler.switchCurrentPlayer(turnHandler.currentPlayer());
+        if (!gameChecker.isValidMove(move, sym)) {
+            if (turnHandler.currentPlayer()) {
+                System.out.println("invalid move");
             }
+        } else {
+            board.getBoard()[move.getRow()][move.getColumn()] = sym;
+            board.printBoard();
+            checkState(move, sym);
+            turnHandler.switchCurrentPlayer(turnHandler.currentPlayer());
         }
-//        while (turnHandler.isHumanTurn()) {
-//            if (isValidMove(move, sym)) {
-//                board.getBoard()[move.getRow()][move.getColumn()] = sym;
-////            counter.setCount(counter.getCount() + 1);
-//                board.printBoard();
-//                turnHandler.switchTurn();
-//            } else {
-//                System.out.println("Invalid space HUMAN");
-//                return;
-//            }
-//        }
+    }
 
+    public boolean isGameRunning() {
+        return isGameRunning;
+    }
 }

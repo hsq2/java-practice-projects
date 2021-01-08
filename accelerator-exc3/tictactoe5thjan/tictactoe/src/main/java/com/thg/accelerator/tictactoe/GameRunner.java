@@ -16,7 +16,6 @@ public class GameRunner {
     static ComputerMoveRequest computerMoveRequest = new ComputerMoveRequest();
 
     public static void main(String[] args) {
-        boolean isGameRunning = true;
         TurnHandler turnHandler = new TurnHandler(true);
         GameHandler gameHandler = new GameHandler(gameChecker, board, turnHandler);
 
@@ -24,17 +23,15 @@ public class GameRunner {
         System.out.println("Welcome to ticactoe");
         board.printBoard();
 
-        while (isGameRunning) {
+        while (gameHandler.isGameRunning()) {
             if (turnHandler.currentPlayer()) {
+                System.out.println("Your turn: ");
                 gameHandler.placeMove(humanMoveRequest.requestMove(), Symbol.CROSS);
-                System.out.println("human turn");
-                if (gameChecker.winningMove(Symbol.CROSS)) {
-                    System.out.println("human wins");
-                    isGameRunning = false;
-                }
+//                gameHandler.checkState(humanMoveRequest.requestMove(), Symbol.CROSS);
             } else {
                 gameHandler.placeMove(computerMoveRequest.requestMove(), Symbol.CIRCLE);
-                System.out.println("comp turn");
+//                gameHandler.checkState(computerMoveRequest.requestMove(), Symbol.CIRCLE);
+
             }
         }
 
