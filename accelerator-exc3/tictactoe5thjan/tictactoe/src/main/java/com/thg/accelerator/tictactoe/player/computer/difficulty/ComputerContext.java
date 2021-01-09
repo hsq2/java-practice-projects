@@ -1,5 +1,7 @@
 package com.thg.accelerator.tictactoe.player.computer.difficulty;
 
+import com.thg.accelerator.tictactoe.Position;
+
 public class ComputerContext {
     private Strategy myStrategy;
 
@@ -7,7 +9,7 @@ public class ComputerContext {
         this.myStrategy = strategy;
     }
 
-    public void useMyStrategy() {
-        myStrategy.difficulty();
+    public Position useMyStrategy() {
+        return myStrategy.makeMove();
     }
 }

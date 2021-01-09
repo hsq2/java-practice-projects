@@ -20,14 +20,14 @@ public class GameRunner {
     static BoardHelper boardHelper = new BoardHelper(Board.getInstance());
     static PlayerFactory playerFactory = new PlayerFactory();
     static HumanMoveRequest humanMoveRequest = new HumanMoveRequest(playerFactory.getPlayer("human"));
-    static ComputerMoveRequest computerMoveRequest = new ComputerMoveRequest(playerFactory.getPlayer("computer"));
+//    static ComputerMoveRequest computerMoveRequest = new ComputerMoveRequest(playerFactory.getPlayer("computer"));
 
     public static void main(String[] args) {
         GameHandler gameHandler = new GameHandler(new GameChecker(boardHelper), boardHelper, new TurnHandler(true));
 
         ComputerContext context = new ComputerContext();
-        context.setStrategy(new Easy());
-        context.useMyStrategy();
+//        context.setStrategy(new Easy(playerFactory.getPlayer("computer")));
+//        context.useMyStrategy();
 
 
 
@@ -41,20 +41,16 @@ public class GameRunner {
 
         int input = scanner.nextInt();
 
-        switch (input) {
-            case 1 -> {
-                context.setStrategy(new Easy());
-                context.useMyStrategy();
-            }
-            case 2 -> {
-                context.setStrategy(new Novice());
-                context.useMyStrategy();
-            }
-            case 3 -> {
-                context.setStrategy(new Master());
-                context.useMyStrategy();
-            }
+
+        if (input == 1) {
+            context.setStrategy(new Easy(playerFactory.getPlayer("computer")));
+        } else if (input == 2) {
+            context.setStrategy(new Novice(playerFactory.getPlayer("computer")));
+        } else if (input == 3) {
+            context.setStrategy(new Master(playerFactory.getPlayer("computer")));
         }
+
+        context.useMyStrategy();
 
 
         //**
@@ -65,7 +61,7 @@ public class GameRunner {
                 System.out.println("Your turn: ");
                 gameHandler.placeMove(humanMoveRequest.requestMove(), Symbol.CROSS);
             } else {
-                gameHandler.placeMove(computerMoveRequest.requestMove(), Symbol.CIRCLE);
+                gameHandler.placeMove(context.useMyStrategy(), Symbol.CIRCLE);
             }
         }
 
