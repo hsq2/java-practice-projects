@@ -1,4 +1,4 @@
-package com.thg.accelerator.tictactoe;
+package com.thg.accelerator.tictactoe.player;
 
 public class Position {
 

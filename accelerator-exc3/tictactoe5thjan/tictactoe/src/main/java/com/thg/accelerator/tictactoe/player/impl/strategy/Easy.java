@@ -1,7 +1,6 @@
-package com.thg.accelerator.tictactoe.player.computer.difficulty;
+package com.thg.accelerator.tictactoe.player.impl.strategy;
 
-import com.thg.accelerator.tictactoe.Position;
-import com.thg.accelerator.tictactoe.player.MoveRequest;
+import com.thg.accelerator.tictactoe.player.Position;
 import com.thg.accelerator.tictactoe.player.Player;
 
 import java.util.Random;
@@ -21,7 +20,7 @@ public class Easy implements Strategy {
 
     @Override
     public Position makeMove() {
-        System.out.println("This is the easiest difficulty");
+        System.out.println("EASY MODE");
         int row = generateRandomMove();
         int col = generateRandomMove();
         return computer.makeMove(row, col);

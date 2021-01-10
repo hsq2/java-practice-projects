@@ -6,58 +6,32 @@ import com.thg.accelerator.tictactoe.board.Symbol;
 import com.thg.accelerator.tictactoe.gamehandler.GameChecker;
 import com.thg.accelerator.tictactoe.gamehandler.GameHandler;
 import com.thg.accelerator.tictactoe.gamehandler.TurnHandler;
-import com.thg.accelerator.tictactoe.player.computer.ComputerMoveRequest;
-import com.thg.accelerator.tictactoe.player.HumanMoveRequest;
+import com.thg.accelerator.tictactoe.gamehandler.savegame.SaveLoad;
+import com.thg.accelerator.tictactoe.player.impl.HumanMoveRequest;
 import com.thg.accelerator.tictactoe.player.PlayerFactory;
-import com.thg.accelerator.tictactoe.player.computer.difficulty.ComputerContext;
-import com.thg.accelerator.tictactoe.player.computer.difficulty.Easy;
-import com.thg.accelerator.tictactoe.player.computer.difficulty.Master;
-import com.thg.accelerator.tictactoe.player.computer.difficulty.Novice;
+import com.thg.accelerator.tictactoe.player.impl.strategy.ComputerContext;
 
-import java.util.Arrays;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class GameRunner {
-    static BoardHelper boardHelper = new BoardHelper(Board.getInstance());
-    static PlayerFactory playerFactory = new PlayerFactory();
-    static HumanMoveRequest humanMoveRequest = new HumanMoveRequest(playerFactory.getPlayer("human"));
-//    static ComputerMoveRequest computerMoveRequest = new ComputerMoveRequest(playerFactory.getPlayer("computer"));
 
-    public static void main(String[] args) {
-        GameHandler gameHandler = new GameHandler(new GameChecker(boardHelper), boardHelper, new TurnHandler(true));
+    public static void main(String[] args) throws IOException {
 
+        BoardHelper boardHelper = new BoardHelper(Board.getInstance());
+        PlayerFactory playerFactory = new PlayerFactory();
+        HumanMoveRequest humanMoveRequest = new HumanMoveRequest(playerFactory.getPlayer("human"));
         ComputerContext context = new ComputerContext();
-//        context.setStrategy(new Easy(playerFactory.getPlayer("computer")));
-//        context.useMyStrategy();
-
-
+        GameHandler gameHandler = new GameHandler(new GameChecker(boardHelper), boardHelper,
+                new TurnHandler(true), new SaveLoad(boardHelper));
 
 
         System.out.println("Welcome to ticactoe");
-
-        //Temp Delete
         System.out.println("Select a difficulty. 1: Beginner, 2: Novice, 3: Master");
 
-        Scanner scanner = new Scanner(System.in);
+        gameHandler.configureStrategy(new Scanner(System.in), context, playerFactory);
 
-        int input = scanner.nextInt();
-
-
-        if (input == 1) {
-            context.setStrategy(new Easy(playerFactory.getPlayer("computer")));
-        } else if (input == 2) {
-            context.setStrategy(new Novice(playerFactory.getPlayer("computer")));
-        } else if (input == 3) {
-            context.setStrategy(new Master(playerFactory.getPlayer("computer")));
-        }
-
-        context.useMyStrategy();
-
-
-        //**
         boardHelper.printBoard();
-
-        System.out.println();
 
         while (gameHandler.isGameRunning()) {
             if (gameHandler.getCurrentPlayer()) {
@@ -66,10 +40,7 @@ public class GameRunner {
             } else {
                 gameHandler.placeMove(context.useMyStrategy(), Symbol.CIRCLE);
             }
-            System.out.println(Arrays.deepToString(gameHandler.getArrayOfEmptyCells()));
-
+//            System.out.println(Arrays.deepToString(gameHandler.getArrayOfEmptyCells()));
         }
-
-
     }
 }

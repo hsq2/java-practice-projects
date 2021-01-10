@@ -1,17 +1,16 @@
-package com.thg.accelerator.tictactoe.player.computer;
+package com.thg.accelerator.tictactoe.player.impl.strategy;
 
-import com.thg.accelerator.tictactoe.Position;
-import com.thg.accelerator.tictactoe.player.MoveRequest;
+import com.thg.accelerator.tictactoe.player.Position;
 import com.thg.accelerator.tictactoe.player.Player;
 
 import java.util.Random;
 
-public class ComputerMoveRequest implements MoveRequest {
+public class Novice implements Strategy {
 
     private final Random random = new Random();
     private final Player computer;
 
-    public ComputerMoveRequest(Player computer) {
+    public Novice(Player computer) {
         this.computer = computer;
     }
 
@@ -20,7 +19,8 @@ public class ComputerMoveRequest implements MoveRequest {
     }
 
     @Override
-    public Position requestMove() {
+    public Position makeMove() { //NEED TO IMPLEMENT NOVICE DIFFICULTY
+        System.out.println("NOVICE MODE");
         int row = generateRandomMove();
         int col = generateRandomMove();
         return computer.makeMove(row, col);

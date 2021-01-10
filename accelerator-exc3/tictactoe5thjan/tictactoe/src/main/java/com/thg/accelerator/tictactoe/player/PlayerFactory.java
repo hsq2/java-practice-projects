@@ -1,7 +1,5 @@
 package com.thg.accelerator.tictactoe.player;
 
-import com.thg.accelerator.tictactoe.player.computer.Computer;
-
 public class PlayerFactory {
 
     public Player getPlayer(String myPlayer) {

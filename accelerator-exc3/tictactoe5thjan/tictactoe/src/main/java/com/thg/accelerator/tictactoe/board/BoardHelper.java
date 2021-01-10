@@ -8,8 +8,6 @@ Board board;
         this.board = board;
     }
 
-
-
     public void printBoard() {
         System.out.println("===========================");
         for (int i = 0; i < board.getRows(); i++) {
@@ -21,8 +19,6 @@ Board board;
             }
             System.out.println();
         }
-        System.out.println("===========================");
-
     }
 
     public int getRows() {

@@ -1,10 +1,12 @@
-package com.thg.accelerator.tictactoe.player;
+package com.thg.accelerator.tictactoe.player.impl;
 
-import com.thg.accelerator.tictactoe.Position;
+import com.thg.accelerator.tictactoe.player.Position;
+import com.thg.accelerator.tictactoe.player.Player;
 
 import java.util.Scanner;
 
 public class HumanMoveRequest implements MoveRequest {
+
     private final Scanner scanner = new Scanner(System.in);
     private final Player human;
 

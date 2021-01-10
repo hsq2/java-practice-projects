@@ -5,17 +5,11 @@ public class Board {
     private static Board instance = null;
     private final int rows = 3;
     private final int columns = 3;
-    private final Symbol[][] board = {{Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL},
+    private final Symbol[][] board =
+            {{Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL},
             {Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL},
             {Symbol.EMPTY_CELL, Symbol.EMPTY_CELL, Symbol.EMPTY_CELL}};
 
-    //    public void initialiseBoard() {
-//        for (int i = 0; i < fundamentalBoard.getRows(); i++) {
-//            for (int j = 0; j < fundamentalBoard.getColumns(); j++) {
-//                fundamentalBoard.getBoard()[i][j] = Symbol.EMPTY_CELL;
-//            }
-//        }
-//    }
 
     private Board() {}
 
@@ -26,8 +20,8 @@ public class Board {
         return instance;
     }
 
-    public static Board clearInstance() {
-        return instance = null;
+    public static void clearInstance() {
+        instance = null;
     }
 
     protected int getRows() {
