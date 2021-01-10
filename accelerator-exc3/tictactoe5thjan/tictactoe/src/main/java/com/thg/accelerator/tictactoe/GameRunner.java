@@ -14,6 +14,7 @@ import com.thg.accelerator.tictactoe.player.computer.difficulty.Easy;
 import com.thg.accelerator.tictactoe.player.computer.difficulty.Master;
 import com.thg.accelerator.tictactoe.player.computer.difficulty.Novice;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameRunner {
@@ -56,6 +57,8 @@ public class GameRunner {
         //**
         boardHelper.printBoard();
 
+        System.out.println();
+
         while (gameHandler.isGameRunning()) {
             if (gameHandler.getCurrentPlayer()) {
                 System.out.println("Your turn: ");
@@ -63,6 +66,8 @@ public class GameRunner {
             } else {
                 gameHandler.placeMove(context.useMyStrategy(), Symbol.CIRCLE);
             }
+            System.out.println(Arrays.deepToString(gameHandler.getArrayOfEmptyCells()));
+
         }
 
 

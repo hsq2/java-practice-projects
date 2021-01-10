@@ -4,6 +4,8 @@ import com.thg.accelerator.tictactoe.Position;
 import com.thg.accelerator.tictactoe.board.BoardHelper;
 import com.thg.accelerator.tictactoe.board.Symbol;
 
+import java.util.ArrayList;
+
 public class GameChecker {
 //    private final Symbol[][] board;
     private final BoardHelper boardHelper;
@@ -14,7 +16,7 @@ public class GameChecker {
 
 
     public boolean isValidMove(Position move, Symbol sym) {
-        return isEmptyCell(move) && inTableRange(move) && !winningMove(sym);
+        return isEmptyCell(move) && inTableRange(move) && !hasWon(sym);
     }
 
     public boolean inTableRange(Position move) {
@@ -25,7 +27,7 @@ public class GameChecker {
         return boardHelper.getBoard()[move.getRow()][move.getColumn()].equals(Symbol.EMPTY_CELL);
     }
 
-    public boolean winningMove(Symbol sym) {
+    public boolean hasWon(Symbol sym) {
         return winningRow(sym) || winningCol(sym) || winningDiag(sym);
     }
 
@@ -57,6 +59,22 @@ public class GameChecker {
         }
 
         return false;
+    }
+
+    private Symbol[][] emptyCellArr() {
+        Symbol[][] arrOfEmptyCells = boardHelper.getBoard();
+        for (Symbol[] arr : arrOfEmptyCells) {
+            for (Symbol cell : arr) {
+                if (!cell.equals(Symbol.EMPTY_CELL)) {
+                    cell = null;
+                }
+            }
+        }
+        return arrOfEmptyCells;
+    }
+
+    public Symbol[][] getArrayOfEmptyCells() {
+        return emptyCellArr();
     }
 
 //    public boolean isDraw(char[][] board, char sym) {

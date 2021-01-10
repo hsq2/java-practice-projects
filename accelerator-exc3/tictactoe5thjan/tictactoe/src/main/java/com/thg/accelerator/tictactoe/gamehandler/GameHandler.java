@@ -17,10 +17,10 @@ public class GameHandler {
     }
 
     public void checkState(Position move, Symbol sym) {
-        if (gameChecker.winningMove(sym)) {
+        if (gameChecker.hasWon(sym)) {
             System.out.println(sym + " wins");
             isGameRunning = false;
-        } else if (gameChecker.isEmptyCell(move) && gameChecker.winningMove(sym)) {
+        } else if (gameChecker.isEmptyCell(move) && gameChecker.hasWon(sym)) {
             System.out.println("Game is a draw");
             isGameRunning = false;
         } else {
@@ -47,5 +47,9 @@ public class GameHandler {
 
     public boolean getCurrentPlayer() {
         return turnHandler.currentPlayer();
+    }
+
+    public Symbol[][] getArrayOfEmptyCells() {
+        return gameChecker.getArrayOfEmptyCells();
     }
 }

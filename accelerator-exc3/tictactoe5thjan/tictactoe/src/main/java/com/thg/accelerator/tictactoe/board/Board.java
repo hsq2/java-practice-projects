@@ -26,15 +26,19 @@ public class Board {
         return instance;
     }
 
-    public int getRows() {
+    public static Board clearInstance() {
+        return instance = null;
+    }
+
+    protected int getRows() {
         return rows;
     }
 
-    public int getColumns() {
+    protected int getColumns() {
         return columns;
     }
 
-    public Symbol[][] getBoard() {
+    protected Symbol[][] getBoard() {
         return board;
     }
 }
