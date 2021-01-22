@@ -23,7 +23,7 @@ public class Main {
 
 //       printSortedList(sortByFirstName());
 //        printSortedList(sortByLastName());
-//        System.out.println(getSalarySumUsingParallelStream(sortByFirstName()));
+        System.out.println(getSalarySumUsingParallelStream(sortByFirstName()));
         printSalaryUsingSequentialStream();
         printSalaryUsingParallelStream();
 
@@ -64,14 +64,6 @@ public class Main {
                         .sum();
     }
 
-    public static void printSalary(SortOperation sort) {
-        long t1 = System.currentTimeMillis();
-        double salary = getSalarySumUsingParallelStream(sortByFirstName());
-        long t2 = System.currentTimeMillis();
-        String message = ("Parallel stream took: " + (t2 - t1) + " ms");
-        sort.print(t1, t2, salary, message);
-
-    }
 
     public static void printSalaryUsingParallelStream() {
         long t1 = System.currentTimeMillis();
@@ -92,3 +84,5 @@ public class Main {
     }
 
 }
+
+

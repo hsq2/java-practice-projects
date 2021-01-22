@@ -12,7 +12,6 @@ class DataListTest {
     @BeforeEach
     void setup() {
         dataList = new DataList();
-
     }
 
     @Test
@@ -39,8 +38,9 @@ class DataListTest {
 
         assertEquals(4, dataList.get(1));
 
-        assertThrows(IndexOutOfBoundsException.class, () -> {dataList.get(4);
-        }
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+                    dataList.get(4);
+                }
         );
 
     }
